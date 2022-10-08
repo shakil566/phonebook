@@ -1,1 +1,22 @@
+body{
+    background-color: rgb(171, 215, 200) !important;
+}
+.carousel-item {
+    height: 480px !important;
 
+}
+.w-100 {
+    height: -webkit-fill-available;
+}
+.margin-top-10 {
+    margin-top: 10px;
+}
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+.contact-list{
+    padding: 30px;
+}
+.header{
+    text-align: center;
+}
