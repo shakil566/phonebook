@@ -20,3 +20,45 @@ body{
 .header{
     text-align: center;
 }
+.portlet.box.green {
+    border: 1px solid #5e6648 !important;
+}
+.portlet.box.green {
+    border-top: 0;
+}
+.portlet.box.green>.portlet-title, .portlet.green, .portlet>.portlet-body.green {
+    background-color: #5e6648 !important;
+}
+.portlet.box.green>.portlet-title, .portlet.green, .portlet>.portlet-body.green {
+    background-color: #4EA9DE;
+    opacity: 0.9;
+}
+.portlet.box {
+    padding: 0!important;
+}
+.portlet {
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 0;
+    border-radius: 4px;
+}
+.navbar-brand{
+    color: #fff;
+    font-weight: bold;
+}
+.navbar-brand:hover{
+    color: rgb(187, 24, 24);
+    font-weight: bold;
+}
+li .nav-link{
+    color: #fff;
+}
+li .nav-link:hover{
+    color: rgb(187, 24, 24);
+}
+.login{
+    margin-top: 80px;
+}
+.register{
+    margin-top: 80px;
+}

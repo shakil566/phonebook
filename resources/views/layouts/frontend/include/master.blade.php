@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>
+    <title>PhoneBook</title>
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"

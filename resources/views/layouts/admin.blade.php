@@ -18,6 +18,7 @@
 
     <link href="{{ asset('admin/css/material-dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/bootstrap-fileinput.css') }}" rel="stylesheet">
 
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
