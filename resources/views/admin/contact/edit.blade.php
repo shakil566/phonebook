@@ -1,111 +1,79 @@
 @extends('layouts.admin')
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title">Edit Profile</h4>
-            <p class="card-category">Complete your profile</p>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Company (disabled)</label>
-                    <input type="text" class="form-control" disabled>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Username</label>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Email address</label>
-                    <input type="email" class="form-control">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Fist Name</label>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Last Name</label>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Adress</label>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">City</label>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Country</label>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Postal Code</label>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label>About Me</label>
-                    <div class="form-group">
-                      <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                      <textarea class="form-control" rows="5"></textarea>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Update Contact</h4>
                     </div>
-                  </div>
+                    <div class="card-body">
+                        {!! Form::model($target, [
+                            'route' => ['contact.update', $target->id],
+                            'method' => 'POST',
+                            'class' => 'form-horizontal',
+                            'files' => true,
+                        ]) !!}
+                        {{ csrf_field() }}
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-12">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="name">Name :<span
+                                                class="text-danger"> *</span></label>
+                                        <div class="col-md-8">
+                                            {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="phone_number">Phone Number :<span
+                                                class="text-danger"> *</span></label>
+                                        <div class="col-md-8">
+                                            {!! Form::text('phone_number', null, ['id' => 'phoneNumber', 'class' => 'form-control']) !!}
+                                            <span class="text-danger">{{ $errors->first('phone_number') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="email">Email :<span
+                                                class="text-danger"> *</span></label>
+                                        <div class="col-md-8">
+                                            {!! Form::text('email', null, ['id' => 'email', 'class' => 'form-control']) !!}
+                                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-bottom-10">
+                                        <div class="col-md-8">
+                                            <label class="control-label col-md-4" for="image">Image :</label>
+                                            {!! Form::file('image', ['id' => 'image']) !!}
+                                            @if (!empty($target->image))
+                                                <img width="40px" height="40px"
+                                                    src="{{ asset('/uploads/contactimage/' . $target->image) }}"
+                                                    alt="{{ $target->name }}" class="border-radius-50">
+                                            @endif
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-4 col-md-8">
+                                        <button class="btn btn-circle green" type="submit">
+                                            <i class="fa fa-check"></i>UPDATE
+                                        </button>
+                                        <a href="{{ URL::to('/contact') }}" class="btn btn-circle btn-outline grey-salsa">
+                                            CANCEL</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-              <div class="clearfix"></div>
-            </form>
-          </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-profile">
-          <div class="card-avatar">
-            <a href="javascript:;">
-              <img class="img" src="../assets/img/faces/marc.jpg" />
-            </a>
-          </div>
-          <div class="card-body">
-            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-            <h4 class="card-title">Alec Thompson</h4>
-            <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-            </p>
-            <a href="javascript:;" class="btn btn-primary btn-round">Follow</a>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 @stop

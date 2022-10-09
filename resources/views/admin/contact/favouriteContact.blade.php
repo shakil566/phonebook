@@ -10,7 +10,7 @@
                             <div class="col-md-8">
                                 <h4 class="card-title mt-0">Contact List
 
-                                    <a class="btn btn-default btn-sm create-new" href="{{ URL::to('contact/create') }}"> Add
+                                    <a class="btn btn-default btn-sm create-new" href="{{ URL::to('contact/create') }}">  Add
                                         New
                                         <i class="fa fa-plus create-new"></i>
                                     </a>
@@ -69,8 +69,6 @@
                                         <th class="text-center">Image</th>
                                         <th class="text-center">Phone Number</th>
                                         <th class="text-center">Email</th>
-                                        <th class="text-center">Favourite</th>
-                                        <th class="td-actions text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -95,44 +93,7 @@
                                                 </td>
                                                 <td class="text-center">{{ $target->phone_number }}</td>
                                                 <td class="text-center">{{ $target->email }}</td>
-                                                <td class="text-center">
-                                                    @if ($target->favourite == '1')
-                                                        <span class="label label-sm"><i class="fa fa-bookmark"
-                                                                aria-hidden="true"></i></span>
-                                                    @else
-                                                        <span class="label label-sm"></span>
-                                                    @endif
-                                                </td>
-                                                <td class="td-actions text-center vcenter">
-                                                    <div class="width-inherit">
-                                                        @if ($target->favourite == '0')
-                                                            <a class="btn btn-xs btn-dark tooltips" title="Add to Favourite"
-                                                                href="{{ URL::to('add-to-favourite/' . $target->id) }}">
-                                                                <i class="fa fa-bookmark-o"></i>
-                                                            </a>
-                                                        @else
-                                                            <a class="btn btn-xs btn-dark tooltips"
-                                                                title="Remove to Favourite"
-                                                                href="{{ URL::to('add-to-favourite/' . $target->id) }}">
-                                                                <i class="fa fa-bookmark"></i>
-                                                            </a>
-                                                        @endif
-                                                        <a class="btn btn-xs btn-primary tooltips" title="Edit"
-                                                            href="{{ URL::to('contact/' . $target->id . '/edit') }}">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>
-
-                                                        {{ Form::open(['url' => 'contact/' . $target->id, 'class' => 'delete-form-inline']) }}
-                                                        {{ Form::hidden('_method', 'DELETE') }}
-                                                        <button class="btn btn-xs btn-danger delete tooltips" title="Delete"
-                                                            type="submit" data-placement="top" data-rel="tooltip"
-                                                            data-original-title="Delete">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                        {{ Form::close() }}
-
-                                                    </div>
-                                                </td>
+                                                
                                             </tr>
                                         @endforeach
                                     @else

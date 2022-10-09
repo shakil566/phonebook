@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="navbar-wrapper">
 
-            <a class="navbar-brand" href="javascript:;">{{date('d M Y') }}</a>
+            <a class="navbar-brand" href="javascript:;">{{ date('d M Y') }}</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -50,14 +50,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
+                        {{ Auth::user()->name }}
                         <i class="material-icons">person</i>
-                        <p class="d-lg-none d-md-block">
-                            Account
-                        </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <div class="dropdown-divider"></div>
+                        {{-- <a class="dropdown-item" href="#">Profile</a> --}}
+                        {{-- <div class="dropdown-divider"></div> --}}
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">

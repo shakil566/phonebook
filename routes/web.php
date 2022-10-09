@@ -33,18 +33,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/contact/create', [App\Http\Controllers\Admin\PhoneBookController::class, 'create'])->name('contact.create');
     Route::post('/contact', [App\Http\Controllers\Admin\PhoneBookController::class, 'store'])->name('contact.store');
     Route::post('/contact/filter', [App\Http\Controllers\Admin\PhoneBookController::class, 'filter']);
-    Route::delete('/contact/edit/{id}', [App\Http\Controllers\Admin\PhoneBookController::class, 'edit'])->name('contact.edit');
-    Route::delete('/contact/{id}', [App\Http\Controllers\Admin\PhoneBookController::class, 'update'])->name('contact.update');
+    Route::get('/contact/{id}/edit', [App\Http\Controllers\Admin\PhoneBookController::class, 'edit'])->name('contact.edit');
+    Route::post('/contact/{id}', [App\Http\Controllers\Admin\PhoneBookController::class, 'update'])->name('contact.update');
     Route::delete('/contact/{id}', [App\Http\Controllers\Admin\PhoneBookController::class, 'destroy'])->name('contact.destroy');
+    Route::get('add-to-favourite/{id}', [App\Http\Controllers\Admin\PhoneBookController::class, 'addToFavourite'])->name('contact.addToFavourite');
+    
+    Route::get('/contact/favourite', [App\Http\Controllers\Admin\PhoneBookController::class, 'favouriteContact'])->name('favouriteContact');
 
 });
-
-//seal
-Route::post('admin/seal/filter/', 'PhoneBookController@filter');
-// Route::get('admin/seal', 'PhoneBookController@index')->name('seal.index');
-Route::get('admin/seal/create', 'SealController@create')->name('seal.create');
-Route::post('admin/seal', 'SealController@store')->name('seal.store');
-
-Route::get('admin/seal/{id}/edit', 'SealController@edit')->name('seal.edit');
-Route::post('admin/seal/{id}', 'SealController@update')->name('seal.update');
-Route::delete('admin/seal/{id}', 'SealController@destroy')->name('seal.destroy');

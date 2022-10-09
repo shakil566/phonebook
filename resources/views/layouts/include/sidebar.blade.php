@@ -22,7 +22,7 @@
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="/contact">
+          <a class="nav-link" href="/contact/favourite">
             <i class="material-icons">bookmark</i>
             <p>Favourite</p>
           </a>

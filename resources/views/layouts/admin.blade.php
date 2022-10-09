@@ -32,12 +32,11 @@
             <div class="content">
                 @yield('content')
             </div>
+            
             @include('layouts.include.footer')
         </div>
     </div>
-
-
-    <!--   Core JS Files   -->
+<!--   Core JS Files   -->
     <script src="{{ asset('admin/js/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/js/popper.min.js') }}"></script>
     <script src="{{ asset('admin/js/bootstrap-material-design.min.js') }}"></script>

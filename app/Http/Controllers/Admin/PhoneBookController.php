@@ -6,17 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\PhoneBook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
+
 class PhoneBookController extends Controller
 {
-    public function index(Request $request) {
-        //passing param for custom function
+    public function index(Request $request)
+    {
+
         $qpArr = $request->all();
         $targetArr = PhoneBook::orderBy('id', 'asc');
-        $status = ["0" => __('label.SELECT_STATUS_OPT')] + array("1" => "Active", "2" => "Inactive");
         $nameArr = PhoneBook::select('name')->orderBy('id', 'asc')->get();
 
         //begin filtering
@@ -26,46 +28,37 @@ class PhoneBookController extends Controller
                 $query->where('name', 'LIKE', '%' . $searchText . '%');
             });
         }
-        if (!empty($request->status)) {
-            $targetArr->where('favorite', $request->status);
-        }
         //end filtering
 
-        $targetArr = $targetArr->paginate(Session::get('paginatorCount'));
+        $targetArr = $targetArr->paginate();
 
-        //change page number after delete if no data has current page
-        if ($targetArr->isEmpty() && isset($qpArr['page']) && ($qpArr['page'] > 1)) {
-            $page = ($qpArr['page'] - 1);
-            return redirect('/admin/seal?page=' . $page);
-        }
-
-        return view('admin.contact.index')->with(compact('targetArr', 'qpArr', 'nameArr', 'status'));
+        return view('admin.contact.index')->with(compact('targetArr', 'qpArr', 'nameArr'));
     }
-
-    public function create(Request $request) { //passing param for custom function
+   
+    public function create(Request $request)
+    {
         $qpArr = $request->all();
 
         return view('admin.contact.create')->with(compact('qpArr'));
     }
 
-    public function store(Request $request) {
-        //begin back same page after update
+    public function store(Request $request)
+    {
 
         $qpArr = $request->all();
         // return $qpArr;
-        $pageNumber = !empty($qpArr['page']) ? '?page=' . $qpArr['page'] : '';
-        //end back same page after update
 
         $validator = Validator::make($request->all(), [
-                    'name' => 'required|unique:phone_books,name',
-                    'phone_number' => 'required|unique:phone_books,phone_number',
-                    'email' => 'required|email|unique:phone_books,email',
+            'name' => 'required|unique:phone_books,name',
+            'phone_number' => 'required|unique:phone_books,phone_number',
+            'email' => 'required|email|unique:phone_books,email',
+            'image' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect('contact/create' . $pageNumber)
-                            ->withInput()
-                            ->withErrors($validator);
+            return redirect('contact/create')
+                ->withInput()
+                ->withErrors($validator);
         }
 
         $target = new PhoneBook;
@@ -74,7 +67,7 @@ class PhoneBookController extends Controller
         $target->email = $request->email;
         if ($request->hasFile('image')) {
             $img = $request->file('image');
-            $fullName =Auth::user()->id . '_' . uniqid() . '.' . $img->getClientOriginalExtension();
+            $fullName = Auth::user()->id . '_' . uniqid() . '.' . $img->getClientOriginalExtension();
             $path = "uploads/contactImage/";
             $img->move($path, $fullName);
             $target->image = $fullName;
@@ -82,87 +75,83 @@ class PhoneBookController extends Controller
         // return $target;
 
         if ($target->save()) {
-            Session::flash('success','Created Successfully');
+            Session::flash('success', 'Created Successfully');
             return redirect('/contact');
         } else {
-            Session::flash('error', 'Not Created');
-            return redirect('/contact' . $pageNumber);
+            Session::flash('error', 'Could Not be Created');
+            return redirect('/contact');
         }
     }
 
-    public function edit(Request $request, $id) {
-        $target = Seal::find($id);
-        $orderList = array('0' => __('label.SELECT_ORDER_OPT')) + Helper::getOrderList($this->controller, 2);
+    public function edit(Request $request, $id)
+    {
+        $target = PhoneBook::find($id);
         if (empty($target)) {
-            Session::flash('error', __('label.INVALID_DATA_ID'));
-            return redirect('admin/seal');
+            Session::flash('error', 'Invalid dat Id');
+            return redirect('contact');
         }
 
-        //passing param for custom function
+
         $qpArr = $request->all();
 
-        return view('seal.edit')->with(compact('target', 'qpArr', 'orderList'));
+        return view('admin.contact.edit')->with(compact('target', 'qpArr'));
     }
 
-    public function update(Request $request, $id) {
-//     print_r($request->all());exit;
-        $target = Seal::find($id);
-        // return $request;
-        $presentOrder = $target->order;
+    public function update(Request $request, $id)
+    {
+        $target = PhoneBook::find($id);
+  
         // echo '<pre>';print_r($target);exit;
-        //begin back same page after update
+
         $qpArr = $request->all();
-        $pageNumber = $qpArr['filter']; //!empty($qpArr['page']) ? '?page='.$qpArr['page'] : '';
-        //end back same page after update
 
         $validator = Validator::make($request->all(), [
-                    'name' => 'required|unique:seal,name,' . $id,
-                    'order' => 'required|not_in:0',
-                    'status' => 'required|not_in:0',
+            'name' => 'required|unique:phone_books,name,' . $id,
+            'phone_number' => 'required',
+            'email' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/seal/' . $id . '/edit' . $pageNumber)
-                            ->withInput()
-                            ->withErrors($validator);
+            return redirect('contact/' . $id . '/edit')
+                ->withInput()
+                ->withErrors($validator);
         }
 
         $target->name = $request->name;
-        $target->order = $request->order;
-        $target->status = $request->status;
+        $target->phone_number = $request->phone_number;
+        $target->email = $request->email;
+
         if ($request->hasFile('image')) {
             $img = $request->file('image');
-            $fullName =Auth::user()->id . '_' . uniqid() . '.' . $img->getClientOriginalExtension();
-            $path = "public/uploads/seal/";
-            if (!empty($target->logo)) {
-                File::delete('public/uploads/seal/' . $target->logo);
+            $fullName = Auth::user()->id . '_' . uniqid() . '.' . $img->getClientOriginalExtension();
+            // return $fullName;
+            $path = "uploads/contactImage/";
+            if (!empty($target->image)) {
+                File::delete('uploads/contactImage/' . $target->image);
             }
             $img->move($path, $fullName);
-            $target->logo = $fullName;
+            $target->image = $fullName;
         }
 
         if ($target->save()) {
-            if ($request->order != $presentOrder) {
-                Helper::updateOrder($this->controller, $request->order, $target->id, $presentOrder);
-            }
-            Session::flash('success', __('label.SEAL_HAS_BEEN_UPDATED_SUCCESSFULLY'));
-            return redirect('admin/seal' . $pageNumber);
+
+            Session::flash('success', 'Updated Successfully');
+            return redirect('contact');
         } else {
-            Session::flash('error', __('label.SEAL_COULD_NOT_BE_UPDATED'));
-            return redirect('admin/seal/' . $id . '/edit' . $pageNumber);
+            Session::flash('error', 'Could not be Updated');
+            return redirect('contact' . $id . '/edit');
         }
     }
 
-    public function destroy(Request $request, $id) {
+    public function destroy(Request $request, $id)
+    {
         $target = PhoneBook::find($id);
 
-        //begin back same page after update
         $qpArr = $request->all();
-        $pageNumber = !empty($qpArr['page']) ? '?page=' . $qpArr['page'] : '?page=';
-        //end back same page after update
+
 
         if (empty($target)) {
-            session()->flash('error','Invalid data id');
+            session()->flash('error', 'Invalid data id');
         }
 
 
@@ -170,14 +159,56 @@ class PhoneBookController extends Controller
 
             Session::flash('error', 'Deleted Successfully');
         } else {
-            Session::flash('error','Could not be deleted');
+            Session::flash('error', 'Could not be deleted');
         }
-        return redirect('contact' . $pageNumber);
+        return redirect('contact');
     }
 
-    public function filter(Request $request) {
+    public function filter(Request $request)
+    {
         $url = 'search=' . urlencode($request->search);
         return Redirect::to('contact?' . $url);
+    }
+
+
+    public function addToFavourite(Request $request, $id)
+    {
+        $getFavouriteId = PhoneBook::select('favourite')->where('id', $id)->first();
+        if($getFavouriteId->favourite == '1'){
+            $favouriteId = '0';
+        }else{
+            $favouriteId = '1';
+        }
+        PhoneBook::where('id',$id)->update(['favourite'=>$favouriteId]);
+        if($getFavouriteId->favourite == '0'){
+            Session::flash('success', 'Add to Favourite Successfully');
+            return redirect('/contact');
+        }else{
+            Session::flash('error', 'Remove to Favourite');
+            return redirect('/contact');
+        }
+        
+    }
+
+    public function favouriteContact(Request $request)
+    {
+
+        $qpArr = $request->all();
+        $targetArr = PhoneBook::where('favourite','1')->orderBy('id', 'asc');
+        $nameArr = PhoneBook::where('favourite','1')->select('name')->orderBy('id', 'asc')->get();
+
+        //begin filtering
+        $searchText = $request->search;
+        if (!empty($searchText)) {
+            $targetArr->where(function ($query) use ($searchText) {
+                $query->where('name', 'LIKE', '%' . $searchText . '%');
+            });
+        }
+        //end filtering
+
+        $targetArr = $targetArr->paginate();
+
+        return view('admin.contact.favouriteContact')->with(compact('targetArr', 'qpArr', 'nameArr'));
     }
 
 }

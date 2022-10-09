@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PhoneBook;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $totalContact = count(PhoneBook::all());
+        $totalFavouriteContact =count( PhoneBook::where('favourite','1')->get());
+
+        return view('admin.index',compact('totalContact','totalFavouriteContact'));
     }
 }

@@ -14,7 +14,6 @@
                             'class' => 'form-horizontal',
                             'enctype' => 'multipart/form-data',
                         ]) !!}
-                        {{-- {!! Form::hidden('page', Helper::queryPageStr($qpArr)) !!} --}}
                         {{ csrf_field() }}
                         <div class="form-body">
                             <div class="row">
@@ -46,8 +45,10 @@
                                     </div>
                                     <div class="row margin-bottom-10">
                                         <div class="col-md-8">
-                                            <label class="control-label col-md-4" for="image">Image :</label>
+                                            <label class="control-label col-md-4" for="image">Image :<span
+                                                class="text-danger"> *</span></label>
                                             {!! Form::file('image', ['id' => 'image']) !!}
+                                            <span class="text-danger">{{ $errors->first('image') }}</span>
                                         </div>
 
                                     </div>
