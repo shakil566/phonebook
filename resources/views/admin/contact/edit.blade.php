@@ -30,10 +30,10 @@
 
                                     @if (!empty($phoneArr))
                                         <?php $pI = 0; ?>
-                                        @foreach ($phoneArr as $cKey => $cinfo)
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 " for="phone">Phone Number :<span
-                                                        class="text-danger"> *</span></label>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4 " for="phone">Phone Number :<span
+                                                    class="text-danger"> *</span></label>
+                                            @foreach ($phoneArr as $cKey => $cinfo)
                                                 <div class="col-md-7">
                                                     {!! Form::text('phone_number[' . $cKey . ']', !empty($cinfo) ? $cinfo : null, [
                                                         'id' => 'phone_' . $cKey,
@@ -45,23 +45,23 @@
                                                 <div class="col-md-1">
                                                     @if ($pI == 0)
                                                         <button
-                                                            class="btn btn-inline btn-success add-another-phone tooltips btn-xs"
+                                                            class="btn btn-inline btn-success add-another-phone tooltips btn-sm"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Add another phone number" type="button">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     @else
                                                         <button
-                                                            class="btn btn-inline btn-danger remove-phone tooltips btn-xs"
+                                                            class="btn btn-inline btn-danger remove-phone tooltips btn-sm"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Remove this field" type="button">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     @endif
                                                 </div>
-                                            </div>
-                                            <?php $pI++; ?>
-                                        @endforeach
+                                                <?php $pI++; ?>
+                                            @endforeach
+                                        </div>
                                     @else
                                         <?php
                                         $v4 = 'c' . uniqid();
@@ -78,8 +78,7 @@
                                                 ]) !!}
                                             </div>
                                             <div class="col-md-1">
-                                                <button
-                                                    class="btn btn-inline btn-success add-another-phone tooltips btn-xs"
+                                                <button class="btn btn-inline btn-success add-another-phone tooltips btn-sm"
                                                     data-key="{{ $v4 }}" data-placement="right"
                                                     title="Add another phone" type="button">
                                                     <i class="fa fa-plus"></i>
@@ -92,12 +91,12 @@
 
                                     @if (!empty($emailArr))
                                         <?php $cI = 0; ?>
-                                        @foreach ($emailArr as $cKey => $cinfo)
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 " for="email">Email :<span
-                                                        class="text-danger"> *</span></label>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4 " for="email">Email :<span
+                                                    class="text-danger"> *</span></label>
+                                            @foreach ($emailArr as $cKey => $cinfo)
                                                 <div class="col-md-7">
-                                                    {!! Form::text('email[' . $cKey . ']', !empty($cinfo) ? $cinfo : null, [
+                                                    {!! Form::email('email[' . $cKey . ']', !empty($cinfo) ? $cinfo : null, [
                                                         'id' => 'email_' . $cKey,
                                                         'class' => 'form-control',
                                                         'data-key' => $cKey,
@@ -107,23 +106,23 @@
                                                 <div class="col-md-1">
                                                     @if ($cI == 0)
                                                         <button
-                                                            class="btn btn-inline btn-success add-another-email tooltips btn-xs"
+                                                            class="btn btn-inline btn-success add-another-email tooltips btn-sm"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Add another email" type="button">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     @else
                                                         <button
-                                                            class="btn btn-inline btn-danger remove-email tooltips btn-xs"
+                                                            class="btn btn-inline btn-danger remove-email tooltips btn-sm"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Remove this field" type="button">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     @endif
                                                 </div>
-                                            </div>
-                                            <?php $cI++; ?>
-                                        @endforeach
+                                                <?php $cI++; ?>
+                                            @endforeach
+                                        </div>
                                     @else
                                         <?php
                                         $v4 = 'c' . uniqid();
@@ -132,7 +131,7 @@
                                             <label class="control-label col-md-4" for="email">Email :<span
                                                     class="text-danger"> *</span></label>
                                             <div class="col-md-7">
-                                                {!! Form::text('email[' . $v4 . ']', null, [
+                                                {!! Form::email('email[' . $v4 . ']', null, [
                                                     'id' => 'email_' . $v4,
                                                     'class' => 'form-control',
                                                     'data-key' => $v4,
@@ -140,8 +139,7 @@
                                                 ]) !!}
                                             </div>
                                             <div class="col-md-1">
-                                                <button
-                                                    class="btn btn-inline btn-success add-another-email tooltips btn-xs"
+                                                <button class="btn btn-inline btn-success add-another-email tooltips btn-sm"
                                                     data-key="{{ $v4 }}" data-placement="right"
                                                     title="Add another email" type="button">
                                                     <i class="fa fa-plus"></i>
@@ -150,14 +148,6 @@
                                         </div>
                                     @endif
                                     <div id="newEmailField"></div>
-
-
-
-
-
-
-
-
 
                                     <div class="row margin-bottom-10">
                                         <div class="col-md-8">
@@ -269,7 +259,6 @@
 
 
         });
-
     </script>
 
 

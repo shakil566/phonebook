@@ -38,12 +38,13 @@
                                                     'id' => 'phone_' . $v4,
                                                     'class' => 'form-control',
                                                     'data-key' => $v4,
-                                                    'placeholder' => 'Enter phone number',
+                                                    'placeholder' => 'Enter phone number', 'required',
                                                 ]) !!}
+                                                <span class="text-danger">{{ $errors->first('phone_number[' . $v4 . ']') }}</span>
                                             </div>
                                             <div class="col-md-1">
                                                 <button
-                                                    class="btn btn-inline btn-success add-another-phone tooltips btn-xs"
+                                                    class="btn btn-inline btn-success add-another-phone tooltips btn-sm"
                                                     data-key="{{ $v4 }}" data-placement="right"
                                                     title="Add another phone" type="button">
                                                     <i class="fa fa-plus"></i>
@@ -52,22 +53,7 @@
                                         </div>
 
                                     <div id="newPhoneField"></div>
-                                    {{-- <div class="form-group">
-                                        <label class="control-label col-md-4" for="phone_number">Phone Number :<span
-                                                class="text-danger"> *</span></label>
-                                        <div class="col-md-8">
-                                            {!! Form::text('phone_number', null, ['id' => 'phoneNumber', 'class' => 'form-control']) !!}
-                                            <span class="text-danger">{{ $errors->first('phone_number') }}</span>
-                                        </div>
-                                    </div> --}}
-                                    {{-- <div class="form-group">
-                                        <label class="control-label col-md-4" for="email">Email :<span
-                                                class="text-danger"> *</span></label>
-                                        <div class="col-md-8">
-                                            {!! Form::text('email', null, ['id' => 'email', 'class' => 'form-control']) !!}
-                                            <span class="text-danger">{{ $errors->first('email') }}</span>
-                                        </div>
-                                    </div> --}}
+
                                     <?php
                                         $v4 = 'c' . uniqid();
                                         ?>
@@ -75,16 +61,16 @@
                                             <label class="control-label col-md-4" for="email">Email :<span
                                                     class="text-danger"> *</span></label>
                                             <div class="col-md-7">
-                                                {!! Form::text('email[' . $v4 . ']', null, [
+                                                {!! Form::email('email[' . $v4 . ']', null, [
                                                     'id' => 'email_' . $v4,
                                                     'class' => 'form-control',
                                                     'data-key' => $v4,
-                                                    'placeholder' => 'Enter valid email address',
+                                                    'placeholder' => 'Enter valid email address', 'required'
                                                 ]) !!}
                                             </div>
                                             <div class="col-md-1">
                                                 <button
-                                                    class="btn btn-inline btn-success add-another-email tooltips btn-xs"
+                                                    class="btn btn-inline btn-success add-another-email tooltips btn-sm"
                                                     data-key="{{ $v4 }}" data-placement="right"
                                                     title="Add another email" type="button">
                                                     <i class="fa fa-plus"></i>
