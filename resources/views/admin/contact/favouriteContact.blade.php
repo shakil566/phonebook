@@ -10,7 +10,7 @@
                             <div class="col-md-8">
                                 <h4 class="card-title mt-0">Contact List
 
-                                    <a class="btn btn-default btn-sm create-new" href="{{ URL::to('contact/create') }}">  Add
+                                    <a class="btn btn-default btn-sm create-new" href="{{ URL::to('contact/create') }}"> Add
                                         New
                                         <i class="fa fa-plus create-new"></i>
                                     </a>
@@ -91,9 +91,29 @@
                                                             alt="{{ $target->name }}" class="border-radius-50">
                                                     @endif
                                                 </td>
-                                                <td class="text-center">{{ $target->phone_number }}</td>
-                                                <td class="text-center">{{ $target->email }}</td>
-                                                
+
+                                                <?php
+
+                                                $jsonDecodedPhoneNumber = $jsonDecodedEmail = [];
+                                                $jsonDecodedPhoneNumber = json_decode($target->phone_number, true);
+                                                $jsonDecodedEmail = json_decode($target->email, true);
+                                                ?>
+
+                                                <td class="text-center">
+                                                    @if (!empty($jsonDecodedPhoneNumber))
+                                                        @foreach ($jsonDecodedPhoneNumber as $item)
+                                                            {{ $item . ' ' ?? '' }}
+                                                        @endforeach
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    @if (!empty($jsonDecodedEmail))
+                                                        @foreach ($jsonDecodedEmail as $item)
+                                                            {{ $item . ' ' ?? '' }}
+                                                        @endforeach
+                                                    @endif
+                                                </td>
+
                                             </tr>
                                         @endforeach
                                     @else

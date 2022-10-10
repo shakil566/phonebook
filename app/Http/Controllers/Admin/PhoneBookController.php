@@ -34,7 +34,7 @@ class PhoneBookController extends Controller
 
         return view('admin.contact.index')->with(compact('targetArr', 'qpArr', 'nameArr'));
     }
-   
+
     public function create(Request $request)
     {
         $qpArr = $request->all();
@@ -44,14 +44,12 @@ class PhoneBookController extends Controller
 
     public function store(Request $request)
     {
-
         $qpArr = $request->all();
-        // return $qpArr;
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:phone_books,name',
-            'phone_number' => 'required|unique:phone_books,phone_number',
-            'email' => 'required|email|unique:phone_books,email',
+            'phone_number' => 'required',
+            'email' => 'required',
             'image' => 'required',
         ]);
 
@@ -61,10 +59,14 @@ class PhoneBookController extends Controller
                 ->withErrors($validator);
         }
 
+        $phoneArr = $request->phone_number;
+        $emailArr = $request->email;
+
         $target = new PhoneBook;
         $target->name = $request->name;
-        $target->phone_number = $request->phone_number;
-        $target->email = $request->email;
+        $target->phone_number = !empty($phoneArr) ? json_encode($phoneArr) : '';
+        $target->email = !empty($emailArr) ? json_encode($emailArr) : '';
+
         if ($request->hasFile('image')) {
             $img = $request->file('image');
             $fullName = Auth::user()->id . '_' . uniqid() . '.' . $img->getClientOriginalExtension();
@@ -86,6 +88,9 @@ class PhoneBookController extends Controller
     public function edit(Request $request, $id)
     {
         $target = PhoneBook::find($id);
+        $emailArr = !empty($target->email) ? json_decode($target->email, true) : [];
+        $phoneArr = !empty($target->phone_number) ? json_decode($target->phone_number, true) : [];
+        // return $emailArr;
         if (empty($target)) {
             Session::flash('error', 'Invalid dat Id');
             return redirect('contact');
@@ -94,13 +99,13 @@ class PhoneBookController extends Controller
 
         $qpArr = $request->all();
 
-        return view('admin.contact.edit')->with(compact('target', 'qpArr'));
+        return view('admin.contact.edit')->with(compact('target', 'qpArr','emailArr','phoneArr'));
     }
 
     public function update(Request $request, $id)
     {
         $target = PhoneBook::find($id);
-  
+
         // echo '<pre>';print_r($target);exit;
 
         $qpArr = $request->all();
@@ -187,7 +192,7 @@ class PhoneBookController extends Controller
             Session::flash('error', 'Remove to Favourite');
             return redirect('/contact');
         }
-        
+
     }
 
     public function favouriteContact(Request $request)
@@ -210,5 +215,15 @@ class PhoneBookController extends Controller
 
         return view('admin.contact.favouriteContact')->with(compact('targetArr', 'qpArr', 'nameArr'));
     }
+    public function addMultipleEmail(Request $request) {
+
+                $html = view('admin.contact.addAnotherEmail')->render();
+                return response()->json(['html' => $html]);
+            }
+    public function addMultiplePhone(Request $request) {
+
+                $html = view('admin.contact.addAnotherPhone')->render();
+                return response()->json(['html' => $html]);
+            }
 
 }

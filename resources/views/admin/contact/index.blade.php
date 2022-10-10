@@ -74,6 +74,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     @if (!empty($targetArr))
                                         <?php
                                         $sl = 0;
@@ -93,8 +94,28 @@
                                                             alt="{{ $target->name }}" class="border-radius-50">
                                                     @endif
                                                 </td>
-                                                <td class="text-center">{{ $target->phone_number }}</td>
-                                                <td class="text-center">{{ $target->email }}</td>
+
+                                                <?php
+
+                                                $jsonDecodedPhoneNumber = $jsonDecodedEmail = [];
+                                                $jsonDecodedPhoneNumber = json_decode($target->phone_number, true);
+                                                $jsonDecodedEmail = json_decode($target->email, true);
+                                                ?>
+
+                                                <td class="text-center">
+                                                    @if(!empty($jsonDecodedPhoneNumber))
+                                                    @foreach ($jsonDecodedPhoneNumber as $item)
+                                                        {{ ($item.' ') ?? '' }}
+                                                    @endforeach
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    @if(!empty($jsonDecodedEmail))
+                                                    @foreach ($jsonDecodedEmail as $item)
+                                                        {{ ($item. ' ') ?? '' }}
+                                                    @endforeach
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">
                                                     @if ($target->favourite == '1')
                                                         <span class="label label-sm"><i class="fa fa-bookmark"
