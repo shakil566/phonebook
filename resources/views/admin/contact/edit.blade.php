@@ -27,13 +27,12 @@
                                             <span class="text-danger">{{ $errors->first('name') }}</span>
                                         </div>
                                     </div>
-
                                     @if (!empty($phoneArr))
                                         <?php $pI = 0; ?>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 " for="phone">Phone Number :<span
-                                                    class="text-danger"> *</span></label>
-                                            @foreach ($phoneArr as $cKey => $cinfo)
+                                        @foreach ($phoneArr as $cKey => $cinfo)
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 " for="phone">Phone Number :<span
+                                                        class="text-danger"> *</span></label>
                                                 <div class="col-md-7">
                                                     {!! Form::text('phone_number[' . $cKey . ']', !empty($cinfo) ? $cinfo : null, [
                                                         'id' => 'phone_' . $cKey,
@@ -45,23 +44,23 @@
                                                 <div class="col-md-1">
                                                     @if ($pI == 0)
                                                         <button
-                                                            class="btn btn-inline btn-success add-another-phone tooltips btn-sm"
+                                                            class="btn btn-inline btn-success add-another-phone tooltips btn-xs"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Add another phone number" type="button">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     @else
                                                         <button
-                                                            class="btn btn-inline btn-danger remove-phone tooltips btn-sm"
+                                                            class="btn btn-inline btn-danger remove-phone tooltips btn-xs"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Remove this field" type="button">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     @endif
                                                 </div>
-                                                <?php $pI++; ?>
-                                            @endforeach
-                                        </div>
+                                            </div>
+                                            <?php $pI++; ?>
+                                        @endforeach
                                     @else
                                         <?php
                                         $v4 = 'c' . uniqid();
@@ -78,7 +77,7 @@
                                                 ]) !!}
                                             </div>
                                             <div class="col-md-1">
-                                                <button class="btn btn-inline btn-success add-another-phone tooltips btn-sm"
+                                                <button class="btn btn-inline btn-success add-another-phone tooltips btn-xs"
                                                     data-key="{{ $v4 }}" data-placement="right"
                                                     title="Add another phone" type="button">
                                                     <i class="fa fa-plus"></i>
@@ -89,14 +88,15 @@
                                     <div id="newPhoneField"></div>
 
 
+
                                     @if (!empty($emailArr))
                                         <?php $cI = 0; ?>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4 " for="email">Email :<span
-                                                    class="text-danger"> *</span></label>
-                                            @foreach ($emailArr as $cKey => $cinfo)
+                                        @foreach ($emailArr as $cKey => $cinfo)
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 " for="email">Email :<span
+                                                        class="text-danger"> *</span></label>
                                                 <div class="col-md-7">
-                                                    {!! Form::email('email[' . $cKey . ']', !empty($cinfo) ? $cinfo : null, [
+                                                    {!! Form::text('email[' . $cKey . ']', !empty($cinfo) ? $cinfo : null, [
                                                         'id' => 'email_' . $cKey,
                                                         'class' => 'form-control',
                                                         'data-key' => $cKey,
@@ -106,23 +106,23 @@
                                                 <div class="col-md-1">
                                                     @if ($cI == 0)
                                                         <button
-                                                            class="btn btn-inline btn-success add-another-email tooltips btn-sm"
+                                                            class="btn btn-inline btn-success add-another-email tooltips btn-xs"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Add another email" type="button">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     @else
                                                         <button
-                                                            class="btn btn-inline btn-danger remove-email tooltips btn-sm"
+                                                            class="btn btn-inline btn-danger remove-email tooltips btn-xs"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Remove this field" type="button">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     @endif
                                                 </div>
-                                                <?php $cI++; ?>
-                                            @endforeach
-                                        </div>
+                                            </div>
+                                            <?php $cI++; ?>
+                                        @endforeach
                                     @else
                                         <?php
                                         $v4 = 'c' . uniqid();
@@ -131,7 +131,7 @@
                                             <label class="control-label col-md-4" for="email">Email :<span
                                                     class="text-danger"> *</span></label>
                                             <div class="col-md-7">
-                                                {!! Form::email('email[' . $v4 . ']', null, [
+                                                {!! Form::text('email[' . $v4 . ']', null, [
                                                     'id' => 'email_' . $v4,
                                                     'class' => 'form-control',
                                                     'data-key' => $v4,
@@ -139,48 +139,50 @@
                                                 ]) !!}
                                             </div>
                                             <div class="col-md-1">
-                                                <button class="btn btn-inline btn-success add-another-email tooltips btn-sm"
+                                                <button class="btn btn-inline btn-success add-another-email tooltips btn-xs"
                                                     data-key="{{ $v4 }}" data-placement="right"
                                                     title="Add another email" type="button">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
-                                    @endif
-                                    <div id="newEmailField"></div>
+                                </div>
+                                @endif
+                                <div id="newEmailField"></div>
 
-                                    <div class="row margin-bottom-10">
-                                        <div class="col-md-8">
-                                            <label class="control-label col-md-4" for="image">Image :</label>
-                                            {!! Form::file('image', ['id' => 'image']) !!}
-                                            @if (!empty($target->image))
-                                                <img width="40px" height="40px"
-                                                    src="{{ asset('/uploads/contactimage/' . $target->image) }}"
-                                                    alt="{{ $target->name }}" class="border-radius-50">
-                                            @endif
 
-                                        </div>
+                                <div class="row margin-bottom-10">
+                                    <div class="col-md-8">
+                                        <label class="control-label col-md-4" for="image">Image :</label>
+                                        {!! Form::file('image', ['id' => 'image']) !!}
+                                        @if (!empty($target->image))
+                                            <img width="40px" height="40px"
+                                                src="{{ asset('/uploads/contactimage/' . $target->image) }}"
+                                                alt="{{ $target->name }}" class="border-radius-50">
+                                        @endif
 
                                     </div>
+
                                 </div>
                             </div>
-                            <div class="form-actions">
-                                <div class="row">
-                                    <div class="col-md-offset-4 col-md-8">
-                                        <button class="btn btn-circle green" type="submit">
-                                            <i class="fa fa-check"></i>UPDATE
-                                        </button>
-                                        <a href="{{ URL::to('/contact') }}" class="btn btn-circle btn-outline grey-salsa">
-                                            CANCEL</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
                         </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-4 col-md-8">
+                                    <button class="btn btn-circle green" type="submit">
+                                        <i class="fa fa-check"></i>UPDATE
+                                    </button>
+                                    <a href="{{ URL::to('/contact') }}" class="btn btn-circle btn-outline grey-salsa">
+                                        CANCEL</a>
+                                </div>
+                            </div>
+                        </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
@@ -194,7 +196,6 @@
                 positionClass: "toast-bottom-right",
                 onclick: null,
             };
-
             $(".add-another-email").on("click", function(e) {
                 e.preventDefault();
                 $.ajaxSetup({
@@ -207,26 +208,19 @@
                     type: "POST",
                     dataType: 'json', // what to expect back from the PHP script, if anything
                     data: {},
-
                     success: function(res) {
                         $("#newEmailField").append(res.html);
-
                         $(".tooltips").tooltip();
                         rearrangeSL('email');
                     },
                 });
             });
-
-
             //remove row
             $(document).on('click', '.remove-email', function() {
                 $(this).parent().parent().remove();
                 rearrangeSL('email');
                 return false;
             });
-
-
-
             $(".add-another-phone").on("click", function(e) {
                 e.preventDefault();
                 $.ajaxSetup({
@@ -239,25 +233,19 @@
                     type: "POST",
                     dataType: 'json', // what to expect back from the PHP script, if anything
                     data: {},
-
                     success: function(res) {
                         $("#newPhoneField").append(res.html);
-
                         $(".tooltips").tooltip();
                         rearrangeSL('phone');
                     },
                 });
             });
-
-
             //remove row
             $(document).on('click', '.remove-phone', function() {
                 $(this).parent().parent().remove();
                 rearrangeSL('phone');
                 return false;
             });
-
-
         });
     </script>
 

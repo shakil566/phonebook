@@ -1,7 +1,8 @@
 <?php $v4 = 'nc' . uniqid(); ?>
 
-<div class="form-group">
-    <div class="col-md-6">
+<div class="row margin-bottom-10">
+    <label class="control-label col-md-2" for="email"></label>
+    <div class="col-md-4">
         {!! Form::email('email[' . $v4 . ']', null, [
             'id' => 'email_' . $v4,
             'class' => 'form-control',

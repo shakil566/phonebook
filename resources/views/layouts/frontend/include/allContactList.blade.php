@@ -1,6 +1,6 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
-    <h1 class="header margin-bottom-10">ALL Contacts <a class="btn btn-primary btn-sm create-new" title="Go to Contact Management" target="_blank" href="{{ URL::to('contact/create') }}"> Add
+    <h1 class="header margin-bottom-10">ALL Contacts <a class="btn btn-primary btn-sm create-new" title="Go to Contact Management" target="_blank" href="{{ URL::to('contact') }}"> Add
         New
         <i class="fa fa-plus create-new"></i>
     </a></h1>

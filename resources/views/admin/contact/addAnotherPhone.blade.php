@@ -1,7 +1,8 @@
 <?php $v4 = 'nc' . uniqid(); ?>
 
-<div class="form-group">
-    <div class="col-md-6">
+<div class="row margin-bottom-10">
+    <label class="control-label col-md-2" for="name"></label>
+    <div class="col-md-4">
         {!! Form::text('phone_number[' . $v4 . ']', null, [
             'id' => 'phone_' . $v4,
             'class' => 'form-control',
