@@ -1,64 +1,156 @@
-body{
-    background-color: rgb(171, 215, 200) !important;
+body {
+    margin-top: 20px;
+    background: rgb(140 122 122) !important
 }
+
+/* CONTACTS */
+.contact-box {
+    background-color: #99c0ca;
+    border: 1px solid #99c0ca;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.contact-box:hover {
+    background-color: #1c7890;
+    border: 1px solid #1c7890;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-box>a {
+    color: inherit;
+}
+
+.contact-box.center-version {
+    border: 1px solid #99c0ca;
+    padding: 0;
+    border-radius: 10px;
+}
+
+
+.contact-box.center-version>a {
+    display: block;
+    /* background-color: #ffffff; */
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.contact-box.center-version>a img {
+    width: 180px;
+    height: 180px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0px solid;
+    border-radius: 100px;
+}
+
+.contact-box.center-version address {
+    margin-bottom: 0;
+    height: 200px;
+}
+
+.contact-box .contact-box-footer {
+    text-align: center;
+    background-color: #99c0ca;
+    border-top: 1px solid #99c0ca;
+    padding: 15px 20px;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+
+
+
 .carousel-item {
     height: 480px !important;
 
 }
+
 .w-100 {
     height: -webkit-fill-available;
 }
+
 .margin-top-10 {
     margin-top: 10px;
 }
+
 .margin-bottom-10 {
     margin-bottom: 10px;
 }
-.contact-list{
+
+.contact-list {
     padding: 30px;
 }
-.header{
+
+.header {
     text-align: center;
+    color: ghostwhite;
 }
+
 .portlet.box.green {
     border: 1px solid #5e6648 !important;
 }
+
 .portlet.box.green {
     border-top: 0;
 }
-.portlet.box.green>.portlet-title, .portlet.green, .portlet>.portlet-body.green {
+
+.portlet.box.green>.portlet-title,
+.portlet.green,
+.portlet>.portlet-body.green {
     background-color: #5e6648 !important;
 }
-.portlet.box.green>.portlet-title, .portlet.green, .portlet>.portlet-body.green {
+
+.portlet.box.green>.portlet-title,
+.portlet.green,
+.portlet>.portlet-body.green {
     background-color: #4EA9DE;
     opacity: 0.9;
 }
+
 .portlet.box {
-    padding: 0!important;
+    padding: 0 !important;
 }
+
 .portlet {
     margin-top: 0;
     margin-bottom: 25px;
     padding: 0;
     border-radius: 4px;
 }
-.navbar-brand{
+
+.navbar-brand {
     color: #fff;
     font-weight: bold;
 }
-.navbar-brand:hover{
+
+.navbar-brand:hover {
     color: rgb(187, 24, 24);
     font-weight: bold;
 }
-li .nav-link{
+
+li .nav-link {
     color: #fff;
 }
-li .nav-link:hover{
+
+li .nav-link:hover {
     color: rgb(187, 24, 24);
 }
-.login{
+
+.login {
     margin-top: 80px;
 }
-.register{
+
+.register {
     margin-top: 80px;
+}
+
+strong.name {
+    color: #eeffde;
+}
+.card {
+    background-color: #c5ced0 !important;
 }

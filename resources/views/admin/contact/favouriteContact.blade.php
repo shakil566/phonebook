@@ -102,14 +102,14 @@
                                                 <td class="text-center">
                                                     @if (!empty($jsonDecodedPhoneNumber))
                                                         @foreach ($jsonDecodedPhoneNumber as $item)
-                                                            {{ $item . ' ' ?? '' }}
+                                                        {!! ($item.'<br>') ?? '' !!}
                                                         @endforeach
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
                                                     @if (!empty($jsonDecodedEmail))
                                                         @foreach ($jsonDecodedEmail as $item)
-                                                            {{ $item . ' ' ?? '' }}
+                                                        {!! ($item.'<br>') ?? '' !!}
                                                         @endforeach
                                                     @endif
                                                 </td>
