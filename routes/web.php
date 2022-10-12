@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/',[FrontendController::class,'index']);
 
 Auth::routes();
@@ -29,9 +26,7 @@ Route::post('contact/addMultipleEmail', [App\Http\Controllers\Admin\PhoneBookCon
 Route::post('contact/addMultiplePhone', [App\Http\Controllers\Admin\PhoneBookController::class, 'addMultiplePhone'])->name('contact.addMultiplePhone');
 
 Route::middleware(['auth'])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('admin.index');
-    // });
+
     Route::get('/contact', [App\Http\Controllers\Admin\PhoneBookController::class, 'index'])->name('contact');
     Route::get('/contact/create', [App\Http\Controllers\Admin\PhoneBookController::class, 'create'])->name('contact.create');
     Route::post('/contact', [App\Http\Controllers\Admin\PhoneBookController::class, 'store'])->name('contact.store');

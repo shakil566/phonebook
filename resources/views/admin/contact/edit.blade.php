@@ -16,13 +16,13 @@
                         ]) !!}
                         {{ csrf_field() }}
                         <div class="form-body">
-                            <div class="row">
+                            <div class="row margin-left-40">
                                 <div class="col-md-offset-1 col-md-12">
 
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4" for="name">Name :<span
+                                    <div class="row">
+                                        <label class="control-label col-md-2" for="name">Name :<span
                                                 class="text-danger"> *</span></label>
-                                        <div class="col-md-8">
+                                        <div class="col-md-4">
                                             {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
                                             <span class="text-danger">{{ $errors->first('name') }}</span>
                                         </div>
@@ -30,10 +30,10 @@
                                     @if (!empty($phoneArr))
                                         <?php $pI = 0; ?>
                                         @foreach ($phoneArr as $cKey => $cinfo)
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 " for="phone">Phone Number :<span
+                                            <div class="row">
+                                                <label class="control-label col-md-2 " for="phone">Phone Number :<span
                                                         class="text-danger"> *</span></label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-4">
                                                     {!! Form::text('phone_number[' . $cKey . ']', !empty($cinfo) ? $cinfo : null, [
                                                         'id' => 'phone_' . $cKey,
                                                         'class' => 'form-control',
@@ -41,17 +41,17 @@
                                                         'placeholder' => 'Enter phone number',
                                                     ]) !!}
                                                 </div>
-                                                <div class="col-md-1">
+                                                <div class="col-md-2">
                                                     @if ($pI == 0)
                                                         <button
-                                                            class="btn btn-inline btn-success add-another-phone tooltips btn-xs"
+                                                            class="btn btn-inline btn-success add-another-phone tooltips btn-sm"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Add another phone number" type="button">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     @else
                                                         <button
-                                                            class="btn btn-inline btn-danger remove-phone tooltips btn-xs"
+                                                            class="btn btn-inline btn-danger remove-phone tooltips btn-sm"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Remove this field" type="button">
                                                             <i class="fa fa-times"></i>
@@ -66,9 +66,9 @@
                                         $v4 = 'c' . uniqid();
                                         ?>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4" for="phone">Phone Number :<span
+                                            <label class="control-label col-md-2" for="phone">Phone Number :<span
                                                     class="text-danger"> *</span></label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-4">
                                                 {!! Form::text('phone_number[' . $v4 . ']', null, [
                                                     'id' => 'phone_' . $v4,
                                                     'class' => 'form-control',
@@ -76,8 +76,8 @@
                                                     'placeholder' => 'Enter phone number',
                                                 ]) !!}
                                             </div>
-                                            <div class="col-md-1">
-                                                <button class="btn btn-inline btn-success add-another-phone tooltips btn-xs"
+                                            <div class="col-md-2">
+                                                <button class="btn btn-inline btn-success add-another-phone tooltips btn-sm"
                                                     data-key="{{ $v4 }}" data-placement="right"
                                                     title="Add another phone" type="button">
                                                     <i class="fa fa-plus"></i>
@@ -92,10 +92,10 @@
                                     @if (!empty($emailArr))
                                         <?php $cI = 0; ?>
                                         @foreach ($emailArr as $cKey => $cinfo)
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4 " for="email">Email :<span
+                                            <div class="row">
+                                                <label class="control-label col-md-2 " for="email">Email :<span
                                                         class="text-danger"> *</span></label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-4">
                                                     {!! Form::text('email[' . $cKey . ']', !empty($cinfo) ? $cinfo : null, [
                                                         'id' => 'email_' . $cKey,
                                                         'class' => 'form-control',
@@ -103,17 +103,17 @@
                                                         'placeholder' => 'Enter valid email address',
                                                     ]) !!}
                                                 </div>
-                                                <div class="col-md-1">
+                                                <div class="col-md-2">
                                                     @if ($cI == 0)
                                                         <button
-                                                            class="btn btn-inline btn-success add-another-email tooltips btn-xs"
+                                                            class="btn btn-inline btn-success add-another-email tooltips btn-sm"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Add another email" type="button">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     @else
                                                         <button
-                                                            class="btn btn-inline btn-danger remove-email tooltips btn-xs"
+                                                            class="btn btn-inline btn-danger remove-email tooltips btn-sm"
                                                             data-key="{{ $cKey }}" data-placement="right"
                                                             title="Remove this field" type="button">
                                                             <i class="fa fa-times"></i>
@@ -127,10 +127,10 @@
                                         <?php
                                         $v4 = 'c' . uniqid();
                                         ?>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-4" for="email">Email :<span
+                                        <div class="row">
+                                            <label class="control-label col-md-2" for="email">Email :<span
                                                     class="text-danger"> *</span></label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-4">
                                                 {!! Form::text('email[' . $v4 . ']', null, [
                                                     'id' => 'email_' . $v4,
                                                     'class' => 'form-control',
@@ -138,8 +138,8 @@
                                                     'placeholder' => 'Enter valid email address',
                                                 ]) !!}
                                             </div>
-                                            <div class="col-md-1">
-                                                <button class="btn btn-inline btn-success add-another-email tooltips btn-xs"
+                                            <div class="col-md-2">
+                                                <button class="btn btn-inline btn-success add-another-email tooltips btn-sm"
                                                     data-key="{{ $v4 }}" data-placement="right"
                                                     title="Add another email" type="button">
                                                     <i class="fa fa-plus"></i>
@@ -152,8 +152,8 @@
 
 
                                 <div class="row margin-bottom-10">
-                                    <div class="col-md-8">
-                                        <label class="control-label col-md-4" for="image">Image :</label>
+                                    <label class="control-label col-md-2" for="image">Image :</label>
+                                    <div class="col-md-4">
                                         {!! Form::file('image', ['id' => 'image']) !!}
                                         @if (!empty($target->image))
                                             <img width="40px" height="40px"
@@ -211,14 +211,12 @@
                     success: function(res) {
                         $("#newEmailField").append(res.html);
                         $(".tooltips").tooltip();
-                        rearrangeSL('email');
                     },
                 });
             });
             //remove row
             $(document).on('click', '.remove-email', function() {
                 $(this).parent().parent().remove();
-                rearrangeSL('email');
                 return false;
             });
             $(".add-another-phone").on("click", function(e) {
@@ -236,14 +234,12 @@
                     success: function(res) {
                         $("#newPhoneField").append(res.html);
                         $(".tooltips").tooltip();
-                        rearrangeSL('phone');
                     },
                 });
             });
             //remove row
             $(document).on('click', '.remove-phone', function() {
                 $(this).parent().parent().remove();
-                rearrangeSL('phone');
                 return false;
             });
         });

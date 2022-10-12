@@ -4,7 +4,7 @@
         <ul>
           <li>
             <a href="#">
-             Contact Us
+
             </a>
           </li>
         </ul>
@@ -13,8 +13,8 @@
         &copy;
         <script>
           document.write(new Date().getFullYear())
-        </script>, made by
-        <a href="{{ url('/') }}" target="_blank">PhoneBook</a>
+        </script>
+        <a href="{{ url('/') }}" target="_blank">PhoneBook</a>, All rights reserved
       </div>
     </div>
   </footer>

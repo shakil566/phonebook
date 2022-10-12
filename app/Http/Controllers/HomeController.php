@@ -27,6 +27,6 @@ class HomeController extends Controller
         $totalContact = count(PhoneBook::all());
         $totalFavouriteContact =count( PhoneBook::where('favourite','1')->get());
 
-        return view('admin.index',compact('totalContact','totalFavouriteContact'));
+        return view('admin.dashboard',compact('totalContact','totalFavouriteContact'));
     }
 }

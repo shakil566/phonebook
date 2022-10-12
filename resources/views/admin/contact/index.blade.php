@@ -103,17 +103,17 @@
                                                 ?>
 
                                                 <td class="text-center">
-                                                    @if(!empty($jsonDecodedPhoneNumber))
-                                                    @foreach ($jsonDecodedPhoneNumber as $item)
-                                                        {!! ($item.'<br>') ?? '' !!}
-                                                    @endforeach
+                                                    @if (!empty($jsonDecodedPhoneNumber))
+                                                        @foreach ($jsonDecodedPhoneNumber as $item)
+                                                            {!! $item . '<br>' ?? '' !!}
+                                                        @endforeach
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    @if(!empty($jsonDecodedEmail))
-                                                    @foreach ($jsonDecodedEmail as $item)
-                                                        {!! ($item.'<br>') ?? '' !!}
-                                                    @endforeach
+                                                    @if (!empty($jsonDecodedEmail))
+                                                        @foreach ($jsonDecodedEmail as $item)
+                                                            {!! $item . '<br>' ?? '' !!}
+                                                        @endforeach
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
@@ -143,7 +143,7 @@
                                                             <i class="fa fa-edit"></i>
                                                         </a>
 
-                                                        {{ Form::open(['url' => 'contact/' . $target->id, 'class' => 'delete-form-inline']) }}
+                                                        {{ Form::open(['url' => 'contact/' . $target->id, 'class' => 'delete-form-inline', 'onsubmit' => 'return confirm("Delete, are you sure ?")']) }}
                                                         {{ Form::hidden('_method', 'DELETE') }}
                                                         <button class="btn btn-xs btn-danger delete tooltips" title="Delete"
                                                             type="submit" data-placement="top" data-rel="tooltip"

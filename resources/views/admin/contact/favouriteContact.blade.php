@@ -8,7 +8,7 @@
                     <div class="card-header card-header-primary">
                         <div class="row">
                             <div class="col-md-8">
-                                <h4 class="card-title mt-0">Contact List
+                                <h4 class="card-title mt-0">Favorite Contact List
 
                                     <a class="btn btn-default btn-sm create-new" href="{{ URL::to('contact/create') }}"> Add
                                         New

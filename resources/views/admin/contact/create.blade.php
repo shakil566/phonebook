@@ -139,7 +139,7 @@
                         $("#newEmailField").append(res.html);
 
                         $(".tooltips").tooltip();
-                        rearrangeSL('email');
+
                     },
                 });
             });
@@ -148,7 +148,7 @@
             //remove row
             $(document).on('click', '.remove-email', function() {
                 $(this).parent().parent().remove();
-                rearrangeSL('email');
+
                 return false;
             });
 
@@ -171,7 +171,7 @@
                         $("#newPhoneField").append(res.html);
 
                         $(".tooltips").tooltip();
-                        rearrangeSL('phone');
+
                     },
                 });
             });
@@ -180,7 +180,7 @@
             //remove row
             $(document).on('click', '.remove-phone', function() {
                 $(this).parent().parent().remove();
-                rearrangeSL('phone');
+
                 return false;
             });
 
